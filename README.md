@@ -125,11 +125,11 @@ Le dossier "learned_models" contient des modèles déjà appris (un pour chaque 
 
 ## Apprentissage & Résultats
 
-Les modèles sont appris avec les paramètres par défaut de l'implémantation DQN de SB3, sauf le paramètre "exploration_fraction" qui est définit à 0.20 car cela permettait à l'agent une meilleure exploration des possibilités de mouvement dans notre cas.
-Chaque modèle est appris pour 700 000 steps.
+Les modèles sont appris avec les paramètres par défaut de l'implémantation DQN de SB3, sauf le paramètre "exploration_fraction" qui est définit à 0.20 car cela permettait à l'agent une meilleure exploration des possibilités de mouvement dans notre cas.  
+Chaque modèle est appris pour 700 000 steps.  
 
-Dans le cas des approches CoordFieldVisionEnv, FullDirectionOnFieldEnv et SpiralFieldVisionEnv, "MlpPolicy" est utilisé en tant que policy.
-Dans le cas de l'approche FullFieldVisionEnv, "CnnPolicy" est utilisé en tant que policy.
+Dans le cas des approches CoordFieldVisionEnv, FullDirectionOnFieldEnv et SpiralFieldVisionEnv, "MlpPolicy" est utilisé en tant que policy.  
+Dans le cas de l'approche FullFieldVisionEnv, "CnnPolicy" est utilisé en tant que policy.  
 
 ## Setup
 
