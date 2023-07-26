@@ -34,6 +34,7 @@ class CoordFieldVisionEnv(HideSeekEnv):
         """
         super().reset(seed=seed, options=options)
 
+
         # New round of gameplay, we initialize the map, the positions of the unit and their vision
         self.initialize_map_pos_vision()
 
@@ -84,6 +85,9 @@ class CoordFieldVisionEnv(HideSeekEnv):
         terminated = False
         decides_to_stop = False
 
+        self.agent.previous_xcoord = self.agent.xcoord
+        self.agent.previous_ycoord = self.agent.ycoord
+
         # If the agent decides to move left
         if action == self.LEFT:
             self.move_agent_left()
@@ -116,10 +120,7 @@ class CoordFieldVisionEnv(HideSeekEnv):
             self.n_step = 0
             truncated = True
 
-        # Compute and update the rewards
-        self.compute_rewards()
-        step_reward = self.reward - self.prev_reward
-        self.prev_reward = self.reward
+
         self.n_step += 1
 
         # Update the agent's vision again after he moved (also updates the map accordingly)
@@ -127,6 +128,9 @@ class CoordFieldVisionEnv(HideSeekEnv):
 
         # We compute the agent's point of interest after he moved
         self.compute_interest_points()
+
+        # Compute and update the rewards
+        self.compute_rewards()
 
         # We update the map accordingly, and compute the path from the agent toward his point of interest
         path_to_interest_tile = None
@@ -149,7 +153,7 @@ class CoordFieldVisionEnv(HideSeekEnv):
 
         return (
             vector_to_return,
-            step_reward,
+            self.reward,
             terminated,
             truncated,
             {},
