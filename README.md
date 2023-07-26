@@ -161,11 +161,11 @@ cd DeepRL
 ```
 python3 main.py -h
 ```
-Exemple de train pour un environnement SpiralFieldVisionEnv (les modèles de ./models sont appris avec ces paramètres):
+Exemple de train pour un environnement SpiralFieldVisionEnv (les modèles de ./learned_models sont appris avec ces paramètres):
 ```
 python3 main.py -env spiral -a train -pmodel ./models ./data/map_v4 -ep moves -o True
 ```
-Exemple d'evaluation pour un environnement SpiralFieldVisionEnv et un modèle appris ./models/SFV.zip:  
+Exemple d'evaluation pour un environnement SpiralFieldVisionEnv et un modèle appris ./learned_models/SFV_map4.zip:  
 ```
-python3 main.py -env spiral -a eval -pmodel ./models/SFV.zip ./data/map_v4 -ep moves -v True
+python3 main.py -env spiral -a eval -pmodel ./learned_models/SFV_map4.zip ./data/map_v4 -ep moves -v True
 ```
