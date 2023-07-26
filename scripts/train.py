@@ -53,5 +53,5 @@ def train(args):
     print("Training starts")
     model.learn(total_timesteps=args.learn_timesteps)
     print("Training ends")
-    print("Saving the model at:",args.pmodel)
-    model.save(args.pmodel)
+    print("Saving the model at:",args.path_model)
+    model.save(args.path_model)

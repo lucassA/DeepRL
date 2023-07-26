@@ -28,7 +28,7 @@ if __name__ == '__main__':
     argParser.add_argument("-lef", "--learn_exploration", type=float,
                            help="Fraction of total timesteps for which randomness of action is applied", default=0.20)
     argParser.add_argument("-o", "--opti", type=bool,
-                           help="Defines if optimization is activated for training. Available only for the original maps within the project",
+                           help="Defines if optimization is activated for training and evaluation. /!\ CAREFULL /!\ Available only for the original maps within the project",
                            default=False)
     argParser.add_argument("-mf", "--mode_vision", type=str,
                            help="For the field environment, defines if the vision is static or dynamic",

@@ -50,25 +50,25 @@ def evaluate(args):
                                    player_placement=args.agent_placement,
                                    opti=args.opti)
         check_env(env, warn=False)
-        model = DQN.load(args.pmodel, env)
+        model = DQN.load(args.path_model, env)
     elif args.environment == "coord":
         env = CoordFieldVisionEnv(map_file=args.path_map, enemy_placement=args.enemy_placement,
                                   player_placement=args.agent_placement,
                                   opti=args.opti)
         check_env(env, warn=False)
-        model = DQN.load(args.pmodel, env)
+        model = DQN.load(args.path_model, env)
     elif args.environment == "field":
         env = FullFieldVisionEnv(map_file=args.path_map, enemy_placement=args.enemy_placement,
                                  player_placement=args.agent_placement,
                                  opti=args.opti, mode_vision=args.mode_vision)
         check_env(env, warn=False)
-        model = DQN.load(args.pmodel, env)
+        model = DQN.load(args.path_model, env)
     elif args.environment == "direction":
         env = FullDirectionOnFieldEnv(map_file=args.path_map, enemy_placement=args.enemy_placement,
                                       player_placement=args.agent_placement,
                                       opti=args.opti)
         check_env(env, warn=False)
-        model = DQN.load(args.pmodel, env)
+        model = DQN.load(args.path_model, env)
 
     perform_evaluation(env_=env, policy=model, neval=args.nb_episode, mode_eval=args.mode_eval, deterministic=True,
              verbose=args.verbose)
