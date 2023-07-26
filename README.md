@@ -9,14 +9,14 @@
 
 Ce projet présente un simple jeu de hide & seek où un agent (player) apprend à se cacher d'un ennemi statique sur une map quadrillée de taille 12*12.
 
+L'agent apprend à se cacher à l'aide de reinforcement learning tandis que l'ennemi reste immobile.
 Pour ce faire, nous utilisons l'implémentation de l'approche de Deep Q-Learning DQN basée sur le framework stable baselines 3 (SB3).
-
-Nous définissons les notions principales, observations, actions et rewards de la sorte:
 
 ### Notions Principales
 
-Notre jeu se base sur une map quadrillé, une notion de vision des différentes unités (agent et ennemi) ainsi qu'une notion de "point d'intérêt" pour l'agent.
+#### Map Quadrillée
 
+Notre jeu se base sur une map quadrillé.  
 Plus précisemment, nous considérons une map de jeu comme une matrice 12*12 composées de 7 valeurs différentes:
 * 1 = case vide
 * 2 = block infranchissable
@@ -26,7 +26,19 @@ Plus précisemment, nous considérons une map de jeu comme une matrice 12*12 com
 * 6 = case vide mais dans la vision de l'ennemi
 * 7 = point d'intérêt pour l'agent
 
-La notion de point d'intêret représente la case qui semble être la plus intéressante pour un agent à un instant t.
+Par exemple, la map suivante, en format "lisible" par un humain:  
+![Image](/readme_imgs/CFV_ex1.png)  
+
+est représentée par la matrice suivante:    
+![Image](/readme_imgs/CFV_ex0.png)
+
+#### Vision des Unités
+
+Dans ce projet, nous considérons que les unités ont leur propre vision.
+
+#### Point d'Intérêt
+
+La notion de point d'intêret représente l'endroit qui semble être la plus intéressante pour l'agent à un instant t.
 Brièvement, on calcule un point d'intérêt de la sorte:
 *  Si l'agent est dans le champ de vision de l'ennemi, le point d'intérêt de l'agent est alors la case la plus proche de lui où il pense que l'ennemi ne le verra pas
 *  Sinon
