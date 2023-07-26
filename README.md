@@ -139,12 +139,37 @@ Le dossier "learned_models" contient des modèles déjà appris (un pour chaque 
 
 ## Apprentissage & Résultats
 
-Les modèles sont appris avec les paramètres par défaut de l'implémantation DQN de SB3, sauf le paramètre "exploration_fraction" qui est définit à 0.20 car cela permettait à l'agent une meilleure exploration des possibilités de mouvement dans notre cas.  
-Chaque modèle est appris pour 700 000 steps.  
-Les modèles sont tous appris sur la map "map_v4", avec plusieurs emplacements possibles pour l'ennemi et un placement statique (de départ) pour l'agent.
+### Détails d'Apprentissage
+
+Les modèles sont appris avec les paramètres par défaut de l'implémantation DQN de SB3, sauf le paramètre "exploration_fraction" qui est définit à 0.20 car cela permettait à l'agent une meilleure exploration des possibilités de mouvement dans notre cas.   
+
+Les modèles sont tous appris sur la map "map_v4", avec plusieurs emplacements possibles pour l'ennemi et un placement statique (de départ) pour l'agent.  
+
+Nous avons expérimenté avec des trainings de 200 000 à 2 000 000 steps.  
+Selon nos résultats, les performances n'augmentent pas au delà de 700 000 ~ 900 000 steps.  
+
+Les modèles de ./learned_models sont appris avec 700 000 steps.  
 
 Dans le cas des approches CoordFieldVisionEnv, FullDirectionOnFieldEnv et SpiralFieldVisionEnv, "MlpPolicy" est utilisé en tant que policy.  
 Dans le cas de l'approche FullFieldVisionEnv, "CnnPolicy" est utilisé en tant que policy.  
+
+### Résultats
+
+Voici les courbes de mean_reward / number_steps pendant l'entraînement des modèles.  
+
+CoordFieldVisionEnv  
+![Image](/readme_imgs/CDFmap4.png)  
+
+FullDirectionOnFieldEnv  
+![Image](/readme_imgs/FDFmap4.png)  
+
+FullFieldVisionEnv  
+![Image](/readme_imgs/FFVmap4.png)  
+
+SpiralFieldVisionEnv  
+![Image](/readme_imgs/SDFmap4.png)  
+
+On peut notamment remarquer que l'apprentissage d'un modèle basé sur l'environnement CoordFieldVisionEnv n'arrive pas à apprendre de manière effective comment maximiser les rewards.
 
 ## Setup
 
