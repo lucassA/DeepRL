@@ -219,16 +219,15 @@ class HideSeekEnv(gym.Env):
         if harder_to_find:
             self.reward = self.reward + 75
 
-        # Fourth reward, penalizes the agent if he takes too much time
-        # self.reward = self.reward - self.n_step
-
+        # Fourth reward, penalizes the agent if he moves away from his point of interest
         distance_poi = 0
         if len(self.agent.interest_points) > 0:
             path_to_interest_tile = shortest_paths_expensive((self.agent.xcoord, self.agent.ycoord),
                                                              (self.agent.interest_points[0][0],
                                                               self.agent.interest_points[0][1]),
                                                              self.playing_map.current_map, 1, to_avoid=self.BLOCK)
-            if path_to_interest_tile is not None:
+
+            if len(path_to_interest_tile[0]) > 1:
                 distance_poi = len(path_to_interest_tile[0])
 
         self.reward = self.reward - distance_poi * 20
