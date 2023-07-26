@@ -201,6 +201,9 @@ class HideSeekEnv(gym.Env):
         @param self:
         @return:
         """
+
+        # This whole section has been used for experimentations
+        """
         # First reward, if the agent is hidden from the enemy
         hidden = ((self.agent.xcoord, self.agent.ycoord) not in self.enemy.vision)
         if hidden:
@@ -219,7 +222,10 @@ class HideSeekEnv(gym.Env):
         if harder_to_find:
             self.reward = self.reward + 75
 
-        # Fourth reward, penalizes the agent if he moves away from his point of interest
+        # Fourth reward, penalizes the agent if he takes too much time
+        self.reward = self.reward - self.n_step / 2
+
+        # Fifth reward, penalizes the agent if he moves away from his point of interest
         distance_poi = 0
         if len(self.agent.interest_points) > 0:
             path_to_interest_tile = shortest_paths_expensive((self.agent.xcoord, self.agent.ycoord),
@@ -231,6 +237,27 @@ class HideSeekEnv(gym.Env):
                 distance_poi = len(path_to_interest_tile[0])
 
         self.reward = self.reward - distance_poi * 20
+        """
+
+        # This is how we compute rewards
+        self.reward = 0.0
+        if len(self.agent.interest_points) > 0: # If the agent is still interested in something
+
+            if self.agent.previous_interest_points is not None:
+                    # We compute the distance to the point of interest from both the current and previous coordinates of the agent
+                    distance_previous_coordinates = math.sqrt((self.agent.previous_xcoord - self.agent.previous_interest_points[0]) ** 2 + (self.agent.previous_ycoord - self.agent.previous_interest_points[1]) ** 2)
+                    distance_present_coordinates =  math.sqrt((self.agent.xcoord - self.agent.previous_interest_points[0]) ** 2 + (self.agent.ycoord - self.agent.previous_interest_points[1]) ** 2)
+
+                    if distance_previous_coordinates > distance_present_coordinates: # The agent got closer to its interest point
+                        self.reward = self.reward + 20
+                    else: # The agent got away from its interest point
+                        self.reward = self.reward - 100
+
+            else: #In this case, the agent had no previous reward. If he has one now, he took a wrong decision
+                self.reward = self.reward - 400
+
+        else: # Else, we assume he is hidden
+            self.reward = 200
 
     def update_agent_vison_and_map(self):
         """
@@ -440,6 +467,10 @@ class HideSeekEnv(gym.Env):
         @param self:
         @return:
         """
+        if len(self.agent.interest_points) > 0:
+            self.agent.previous_interest_points = self.agent.interest_points[0]
+        else:
+            self.agent.previous_interest_points = None
         self.agent.interest_points = []
 
         # First heuristic : if the agent is seen by the enemy, his interest point will be the closest tile that he thinks is not seen by the enemy

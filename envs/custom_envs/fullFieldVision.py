@@ -85,6 +85,9 @@ class FullFieldVisionEnv(HideSeekEnv):
         terminated = False
         decides_to_stop = False
 
+        self.agent.previous_xcoord = self.agent.xcoord
+        self.agent.previous_ycoord = self.agent.ycoord
+
         # If the agent decides to move left
         if action == self.LEFT:
             self.move_agent_left()
@@ -117,17 +120,16 @@ class FullFieldVisionEnv(HideSeekEnv):
             self.n_step = 0
             truncated = True
 
-        # Compute and update the rewards
-        self.compute_rewards()
-        step_reward = self.reward - self.prev_reward
-        self.prev_reward = self.reward
-        self.n_step += 1
-
         # Update the agent's vision again after he moved (also updates the map accordingly)
         self.update_agent_vison_and_map()
 
         # We compute the agent's point of interest after he moved
         self.compute_interest_points()
+
+        # Compute and update the rewards
+        self.compute_rewards()
+
+        self.n_step += 1
 
         # We update the map accordingly
         if len(self.agent.interest_points) > 0:
@@ -138,7 +140,7 @@ class FullFieldVisionEnv(HideSeekEnv):
             img_format_map = self.prepare_map_img_CNN(self.playing_map.current_map)
             return (
                 img_format_map,
-                step_reward,
+                self.reward, # step_reward,
                 terminated,
                 truncated,
                 {},
@@ -148,7 +150,7 @@ class FullFieldVisionEnv(HideSeekEnv):
             img_format_map = self.prepare_map_img_CNN(self.center_map_around_player())
             return (
                 img_format_map,
-                step_reward,
+                self.reward,
                 terminated,
                 truncated,
                 {},

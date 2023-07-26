@@ -98,6 +98,9 @@ class FullDirectionOnFieldEnv(HideSeekEnv):
         terminated = False
         decides_to_stop = False
 
+        self.agent.previous_xcoord = self.agent.xcoord
+        self.agent.previous_ycoord = self.agent.ycoord
+
         # If the agent decides to move left
         if action == self.LEFT:
             self.move_agent_left()
@@ -130,20 +133,22 @@ class FullDirectionOnFieldEnv(HideSeekEnv):
             self.n_step = 0
             truncated = True
 
-        # Compute and update the rewards
-        self.compute_rewards()
-        step_reward = self.reward - self.prev_reward
-        self.prev_reward = self.reward
-        self.n_step += 1
-
         # Update the agent's vision again after he moved (also updates the map accordingly)
         self.update_agent_vison_and_map()
+
+
+        # We compute the agent's point of interest after he moved
+        self.compute_interest_points()
+
+        # Compute and update the rewards
+        self.compute_rewards()
+
+        self.n_step += 1
+
 
         # defined for observations
         left = right = down = up = stop = 0
 
-        # We compute the agent's point of interest after he moved
-        self.compute_interest_points()
         # We update the map accordingly, and compute the path from the agent toward his point of interest
         if len(self.agent.interest_points) > 0:
             path_to_interest_tile = shortest_paths_expensive((self.agent.xcoord, self.agent.ycoord),
@@ -174,7 +179,7 @@ class FullDirectionOnFieldEnv(HideSeekEnv):
 
         return (
             list_block_in_vision,
-            step_reward,
+            self.reward, # step_reward,
             terminated,
             truncated,
             {},

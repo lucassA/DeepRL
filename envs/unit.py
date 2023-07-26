@@ -8,6 +8,8 @@ class Unit:
                  a vision space represented as a list of tiles coordinates
                  a "memory" of previously seen tiles represented as a list of tiles coordinates
                  a set of points of interest to the unit
+                 a variable storing the previous point of interest
+                 two variables storing the previous coordinates of the unit
     """
 
     def __init__(self):
@@ -18,6 +20,10 @@ class Unit:
         self.vision = []
         self.previously_viewed = []
         self.interest_points = []
+        self.previous_interest_points = None
+
+        self.previous_xcoord = None
+        self.previous_ycoord = None
 
 
 
