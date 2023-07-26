@@ -134,11 +134,12 @@ Dans le cas de l'approche FullFieldVisionEnv, "CnnPolicy" est utilisé en tant q
 ## Setup
 
 Afin de faire fonctionner nos modèles, le package SB3 doit être installé:
-
+```
 !pip install "stable-baselines3[extra]>=2.0.0a4"
-
+```
+```
 git clone https://github.com/lucassA/DeepRL.git
-
+```
 Pour lancer un apprentissage ou une évaluation, une fois dans le dossier principal:
 
 cd scripts
