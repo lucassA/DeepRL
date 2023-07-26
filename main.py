@@ -20,12 +20,12 @@ if __name__ == '__main__':
                            choices=["static", "moves", "random"], default="static")
     argParser.add_argument("-lg", "--logs", type=bool, help="Boolean indicating if logs are required, True or False",
                            choices=[True, False], default=False)
-    argParser.add_argument("-llr", "--learn_lr", type=float, help="Learning rate, default is 0.0001", default=0.0001)
+    argParser.add_argument("-llr", "--learn_lr", type=str, help="Learning rate, default is 0.0001", default="0.0001")
     argParser.add_argument("-lts", "--learn_timesteps", type=int,
                            help="Number of timestep to train for, default is 1000000", default=700000)
     argParser.add_argument("-lls", "--learn_learnstart", type=int,
                            help="Number of timestep before training, default is 50000", default=50000)
-    argParser.add_argument("-lef", "--learn_exploration", type=float,
+    argParser.add_argument("-lef", "--learn_exploration", type=int,
                            help="Fraction of total timesteps for which randomness of action is applied", default=0.20)
     argParser.add_argument("-o", "--opti", type=bool,
                            help="Defines if optimization is activated for training and evaluation. /!\ CAREFULL /!\ Available only for the original maps within the project",
