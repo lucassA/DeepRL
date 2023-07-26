@@ -200,9 +200,9 @@ End:
 
 Exemple de limitation de notre approche: environnement FullFieldVisionEnv sur la map d'entrainement "map_v4"  
 Start:  
-![Image](/readme_imgs/limitation1endFFV.png)  
-End:  
 ![Image](/readme_imgs/limitation1startFFV.png)  
+End:  
+![Image](/readme_imgs/limitation1endFFV.png)  
 
 L'agent n'est pas dans le champ de vision de l'ennemi et il trouve un endroit adjacent à deux blocks : il s'y dirige et s'y arrête, alors qu'un humain jugerait qu'il n'est pas "bien caché".
 
