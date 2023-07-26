@@ -213,12 +213,16 @@ Afin de faire fonctionner nos modèles, le package SB3 doit être installé:
 ```
 !pip install "stable-baselines3[extra]>=2.0.0a4"
 ```
+
+Pour lancer des train/evaluations, il suffit de cloner le repo:  
 ```
 git clone https://github.com/lucassA/DeepRL.git
 ```
+Rentrer dans le répertoire crée:  
 ```
 cd DeepRL
 ```
+Lancer le fichier main.py:  
 ```
 python3 main.py -h
 ```
