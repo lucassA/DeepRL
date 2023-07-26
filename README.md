@@ -155,7 +155,7 @@ Le dossier "learned_models" contient des modèles déjà appris (un pour chaque 
      └── model_FFV.zip              - Modèles appris exploitant l'environnement de type "FullFieldVisionEnv"
      └── model_SFV.zip              - Modèles appris exploitant l'environnement de type "SpiralFieldVisionEnv"
 
-![Image](/readme_imgs/archi.png)  
+![Image](/readme_imgs/Archi.png)  
 
 ## Apprentissage & Résultats
 
