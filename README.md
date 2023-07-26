@@ -174,7 +174,8 @@ On peut notamment remarquer que l'apprentissage d'un modèle basé sur l'environ
 
 ### Exemples
 
-Voici quelques exemples des différents modèles.
+Voici quelques exemples des différents modèles.  
+Sur ces exemples: 'X' désigne l'agent qui se cache, 'Y' désigne l'ennemi. Un '0' désigne un block infranchissable, un '.' désigne une case vide et '-' désigne une case vide mais qui est vue par l'ennemi.
 
 Exemple de CoordFieldVisionEnv sur la map "map_v4"  
 Start:  
