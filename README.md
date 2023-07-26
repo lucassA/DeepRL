@@ -43,20 +43,19 @@ Nous expérimentons avec 4 type d'observations, représentées par les 4 fichier
 #### CoordFieldVisionEnv (CFV)
 
 Dans cette approche, les observations sont composés de deux positions (paires de coodonnées) et d'une distance.
-Plus précisément: des coordonnées de l'agent, des coordonnées de la case qu'il doit emprunter pour se rapprocher de son point d'intérêt et de la distance entre les deux.
-Exemple:
-( .  .  .  . )
-( .  X  .  $ )
-( @  @  .  . )
-( .  .  .  . )
+Plus précisément: des coordonnées de l'agent, des coordonnées de la case qu'il doit emprunter pour se rapprocher de son point d'intérêt et de la distance entre les deux.  
+Exemple:  
+( .  .  .  . )  
+( .  X  .  $ )  
+( @  @  .  . )  
+( .  .  .  . )  
 
 Si X représente l'agent, @ représente un block et $ le point d'intérêt: le vecteur d'observation sera (1, 1, SEP, 1, 2, SEP, 2) où SEP est une valeur de séparation (= -1)
         
 #### FullDirectionOnFieldEnv (FDF)
 
 Dans cette approche, les observations sont composés de cinq valeurs, représentant l' action la plus probable que l'agent doit effectuer pour serapprocher de son point d'intêret.
-Plus précisément: des valeurs binaires représentant les actions possibles par l'agent (gauche, droite, haut, bas, arrêt).
-
+Plus précisément: des valeurs binaires représentant les actions possibles par l'agent (gauche, droite, haut, bas, arrêt).  
 Exemple:  
         ( .  .  .  . )  
         ( .  X  .  $ )  
@@ -68,17 +67,17 @@ Si X représente l'agent, @ représente un block et $ le point d'intérêt: le v
 #### SpiralFieldVisionEnv (SFV)
 
 Dans cette approche, les observations sont composés d'un vecteur de 9*9 valeurs représentant les "alentours" de l'agent, ordonné en forme de spirale avec pour origine l'agent.
-Un example d'ordre de spirale serait:
-        9 10 11 12
-        8  1  2 13
-        7  X  3 14
-        6  5  4 ...
-
-Avec l'exemple précédent:
-        ( .  .  .  . )
-        ( .  X  .  $ )
-        ( @  @  .  . )
-        ( .  .  .  . )
+Un example d'ordre de spirale serait:  
+        9 10 11 12  
+        8  1  2 13  
+        7  X  3 14  
+        6  5  4 ...  
+  
+Avec l'exemple précédent:  
+        ( .  .  .  . )  
+        ( .  X  .  $ )  
+        ( @  @  .  . )  
+        ( .  .  .  . )  
 
 Si X représente l'agent, @ représente un block et $ le point d'intérêt, et en considérant les représentations numériques des cases ( . = 1 , @ = 2, $ = 7):
 le vecteur d'observation sera (1, 1, 1, 1, 2, 2, 1, 1, outside_value, outside_value, outside_value, outside_value, 1, 7, etc.)
@@ -87,26 +86,26 @@ le vecteur d'observation sera (1, 1, 1, 1, 2, 2, 1, 1, outside_value, outside_va
 
 Dans cette approche, les observations sont une image RGB 32*32 représentant la map, le positionnement des joueurs, la vision de l'ennemi (perçue par l'agent) et le point d'intêret.
 Pour ce faire, nous "triplons" le contenu de la matrice représentant la map et créons 3 channels représentant les channels RGB afin d'obtenir une image (les cases ont des valeurs différentes pour chaque channel).
-
-Avec l'exemple précédent:
-        ( .  .  .  . )
-        ( .  X  .  $ )
-        ( @  @  .  . )
-        ( .  .  .  . )
-
-On obtiendrait une image "triplée":
-        ( .  .  .  .  .  .  .  .  .  .  .  . )
-        ( .  .  .  .  .  .  .  .  .  .  .  . )
-        ( .  .  .  .  .  .  .  .  .  .  .  . )
-        ( .  .  .  X  X  X  .  .  .  $  $  $ )
-        ( .  .  .  X  X  X  .  .  .  $  $  $ )
-        ( .  .  .  X  X  X  .  .  .  $  $  $ )
-        ( @  @  @  @  @  @  .  .  .  .  .  . )
-        ( @  @  @  @  @  @  .  .  .  .  .  . )
-        ( @  @  @  @  @  @  .  .  .  .  .  . )
-        ( .  .  .  .  .  .  .  .  .  .  .  . )
-        ( .  .  .  .  .  .  .  .  .  .  .  . )
-        ( .  .  .  .  .  .  .  .  .  .  .  . )
+  
+Avec l'exemple précédent:  
+        ( .  .  .  . )  
+        ( .  X  .  $ )  
+        ( @  @  .  . )  
+        ( .  .  .  . )  
+  
+On obtiendrait une image "triplée":  
+        ( .  .  .  .  .  .  .  .  .  .  .  . )  
+        ( .  .  .  .  .  .  .  .  .  .  .  . )  
+        ( .  .  .  .  .  .  .  .  .  .  .  . )  
+        ( .  .  .  X  X  X  .  .  .  $  $  $ )  
+        ( .  .  .  X  X  X  .  .  .  $  $  $ )  
+        ( .  .  .  X  X  X  .  .  .  $  $  $ )  
+        ( @  @  @  @  @  @  .  .  .  .  .  . )  
+        ( @  @  @  @  @  @  .  .  .  .  .  . )  
+        ( @  @  @  @  @  @  .  .  .  .  .  . )  
+        ( .  .  .  .  .  .  .  .  .  .  .  . )  
+        ( .  .  .  .  .  .  .  .  .  .  .  . )  
+        ( .  .  .  .  .  .  .  .  .  .  .  . )  
 laquelle on peut transformer en trois channels différents.
 
 Nous proposons deux variantes: 
