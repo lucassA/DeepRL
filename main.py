@@ -10,7 +10,7 @@ if __name__ == '__main__':
                            choices=["spiral", "coord", "field", "direction"], required=True)
     argParser.add_argument("-a", "--action", type=str, help="Action to be performed, train or eval",
                            required=True, choices=["train", "eval"])
-    argParser.add_argument("-pmodel", "--path_model", type=str, help="Filepath in which to save the model for training",
+    argParser.add_argument("-pmodel", "--path_model", type=str, help="Filepath in which to save the model for training OR load the model for eval",
                            required=True)
     argParser.add_argument("-pmap", "--path_map", type=str, help="Filepath in which to find the map", required=True)
     argParser.add_argument("-ap", "--agent_placement", type=str, help="Type of placement for the agent: static, random",
@@ -22,14 +22,14 @@ if __name__ == '__main__':
                            choices=[True, False], default=False)
     argParser.add_argument("-llr", "--learn_lr", type=float, help="Learning rate, default is 0.0001", default=0.0001)
     argParser.add_argument("-lts", "--learn_timesteps", type=int,
-                           help="Number of timestep to train for, default is 1000000", default=1000000)
+                           help="Number of timestep to train for, default is 1000000", default=700000)
     argParser.add_argument("-lls", "--learn_learnstart", type=int,
                            help="Number of timestep before training, default is 50000", default=50000)
     argParser.add_argument("-lef", "--learn_exploration", type=float,
                            help="Fraction of total timesteps for which randomness of action is applied", default=0.20)
     argParser.add_argument("-o", "--opti", type=bool,
                            help="Defines if optimization is activated for training. Available only for the original maps within the project",
-                           default=True)
+                           default=False)
     argParser.add_argument("-mf", "--mode_vision", type=str,
                            help="For the field environment, defines if the vision is static or dynamic",
                            choices=["static", "dynamic"], default="dynamic")
