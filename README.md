@@ -34,7 +34,9 @@ est représentée par la matrice suivante:
 
 #### Vision des Unités
 
-Dans ce projet, nous considérons que les unités ont leur propre vision.
+Dans ce projet, nous considérons que les unités ont leur propre vision.  
+Pour l'ennemi, cette vision est calculée à l'aide d'un algorithme A*.
+Pour l'agent, puisque ce dernier se déplace à chaque étape, on utilise une méthode moins couteuse.
 
 #### Point d'Intérêt
 
@@ -156,10 +158,14 @@ git clone https://github.com/lucassA/DeepRL.git
 ```
 cd DeepRL
 ```
-Pour lancer un apprentissage ou une évaluation, une fois dans le dossier principal:
-
-cd scripts
-
-python3 train 
-
-
+```
+python3 main.py -h
+```
+Exemple de train pour un environnement SpiralFieldVisionEnv (les modèles de ./models sont appris avec ces paramètres):
+```
+python3 main.py -env spiral -a train -pmodel ./models ./data/map_v4 -ep moves -o True
+```
+Exemple d'evaluation pour un environnement SpiralFieldVisionEnv et un modèle appris ./models/SFV.zip:  
+```
+python3 main.py -env spiral -a eval -pmodel ./models/SFV.zip ./data/map_v4 -ep moves -v True
+```
