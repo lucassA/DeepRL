@@ -223,9 +223,9 @@ python3 main.py -h
 ```
 Exemple de train pour un environnement SpiralFieldVisionEnv (les modèles de ./learned_models sont appris avec ces paramètres):
 ```
-python3 main.py -env spiral -a train -pmodel ./models -pmap ./data/map_v4 -ep moves -o True
+python3 main.py -env spiral -a train -pmodel ./learned_models/new_models -pmap ./data/map_v4 -ep moves -lg True -o True
 ```
 Exemple d'evaluation pour un environnement SpiralFieldVisionEnv et un modèle appris ./learned_models/SFV_map4.zip (attention, le paramètre '-o' ne doit être activé que pour les 4 map originales):  
 ```
-python3 main.py -env spiral -a eval -pmodel ./learned_models/SFV_map4.zip -pmap ./data/map_v4 -ep moves -v True -o True
+python3 main.py -env spiral -a eval -pmodel ./learned_models/SFV_map4.zip -pmap ./data/map_v4 -ep moves -o True
 ```
