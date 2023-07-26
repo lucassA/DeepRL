@@ -57,11 +57,11 @@ Si X représente l'agent, @ représente un block et $ le point d'intérêt: le v
 Dans cette approche, les observations sont composés de cinq valeurs, représentant l' action la plus probable que l'agent doit effectuer pour serapprocher de son point d'intêret.
 Plus précisément: des valeurs binaires représentant les actions possibles par l'agent (gauche, droite, haut, bas, arrêt).
 
-Exemple:
-        ( .  .  .  . )
-        ( .  X  .  $ )
-        ( @  @  .  . )
-        ( .  .  .  . )
+Exemple:  
+        ( .  .  .  . )  
+        ( .  X  .  $ )  
+        ( @  @  .  . )  
+        ( .  .  .  . )  
         
 Si X représente l'agent, @ représente un block et $ le point d'intérêt: le vecteur d'observation sera (0, 1, 0, 0, 0)
 
