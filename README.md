@@ -2,7 +2,7 @@
 ## Tables des matières
 * [Informations Générales](#general-info)
 * [Architecture du Projet](#architecture)
-* [Apprentissage & Résultats](#results)
+* [Apprentissage](#apprentissage)
 * [Setup](#setup)
 
 ## Informations Générales
@@ -121,7 +121,7 @@ Les rewards (à chaque 'step') sont les suivants:
 * Si l'agent se place de manière à ce qu'il y a plusieurs blocks entre lui et l'ennemi, il est récompensé
 * Si l'agent s'éloigne deson point d'intêret, il est pénalisé. Sinon, il est récompensé.
 
-## Architecture du Projet
+## Architecture
 L'architecture du projet est présentée ci-dessous.
 
 L'environnement abstrait d'un jeu hide & seek est décrit dans le dossier "envs" à l'aide des fichiers "hideSeekEnv.py", "maps.py" et "unit.py".
@@ -137,7 +137,7 @@ Le dossier "learned_models" contient des modèles déjà appris (un pour chaque 
 
 ![Image](/readme_imgs/Archi.png)  
 
-## Apprentissage & Résultats
+## Apprentissage
 
 ### Détails d'Apprentissage
 
