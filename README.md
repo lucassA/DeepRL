@@ -44,7 +44,7 @@ Nous expérimentons avec 4 type d'observations, représentées par les 4 fichier
 
 Dans cette approche, les observations sont composés de deux positions (paires de coodonnées) et d'une distance.
 Plus précisément: des coordonnées de l'agent, des coordonnées de la case qu'il doit emprunter pour se rapprocher de son point d'intérêt et de la distance entre les deux.  
-Exemple:  
+Exemple avec une map 4*4:  
 ![Image](/readme_imgs/CFV_ex1.png)
 
 Si X représente l'agent, @ représente un block et $ le point d'intérêt: le vecteur d'observation sera (1, 1, SEP, 1, 2, SEP, 2) où SEP est une valeur de séparation (= -1)
@@ -53,7 +53,7 @@ Si X représente l'agent, @ représente un block et $ le point d'intérêt: le v
 
 Dans cette approche, les observations sont composés de cinq valeurs, représentant l' action la plus probable que l'agent doit effectuer pour serapprocher de son point d'intêret.
 Plus précisément: des valeurs binaires représentant les actions possibles par l'agent (gauche, droite, haut, bas, arrêt).  
-Exemple:  
+Exemple avec une map 4*4:  
 ![Image](/readme_imgs/CFV_ex1.png)
         
 Si X représente l'agent, @ représente un block et $ le point d'intérêt: le vecteur d'observation sera (0, 1, 0, 0, 0)
@@ -81,7 +81,7 @@ Avec l'exemple précédent:
 On obtiendrait une image "triplée":  
 ![Image](/readme_imgs/FFV_ex1.png)  
 
-laquelle on peut transformer en trois channels différents.
+que l'on peut transformer en trois channels différents.
 
 Nous proposons deux variantes: 
 * Soit l'image est statique, et représente la map dans son intégralité (mode_vision="static")
@@ -121,52 +121,32 @@ Le dossier "scripts" contient les scripts exécutables
 
 Le dossier "learned_models" contient des modèles déjà appris (un pour chaque type d'environnement)
 
-├── envs    - Dossier contenant les informations concernant les différents environnements de jeu
-│   ├── hideSeekEnv.py   - Fichier contenant la classe abstraite "HideSeekEnv" représentant un environnement générique de jeu hide & seek
-│   ├── maps.py        - Fichier contenant la classe Maps représentant une map sur laquelle se déroule le jeu de hide & seek
-│   ├── unit.py    - Fichier contenant la classe Unit représentant une unité (joueur/ennemi) dans une partie de hide & seek
-│   └── custom_envs    - Dossier contenant les environnement implémentant la classe abstraite "HideSeekEnv"
-|       ├── coordFieldVision.py   - Fichier contenant la classe représentant un environnement de type "CoordFieldVisionEnv"
-│       ├── fullDirectionOnField.py   - Fichier contenant la classe représentant un environnement de type "FullDirectionOnFieldEnv"
-│       ├── fullFieldVision.py   - Fichier contenant la classe représentant un environnement de type "FullFieldVisionEnv"
-│       └── spiralFieldVision.py   - Fichier contenant la classe représentant un environnement de type "SpiralFieldVisionEnv"
-│
-│
-├── data               - Dossier contenant les données externes nécessaires au jeu de hide & seek
-│   ├── dataloader.py  - Fichier contenant une simple classe transformant des données externes en objets exploitables par les environnements
-│   ├── opti_training.py - Fichier contenant des optimisations (données pré-calculées) pour rendre le training plus efficient
-│   └── example_maps    - Dossier contenant les données externes (sous forme de fichiers textuels) concernant les différentes maps de jeu
-│       └── map_v1
-│       └── map_v2
-│       └── map_v3
-│       └── map_v4
-│
-│
-├── misc             
-│   └── utils.py   - Fichier contenant des fonctions "génériques" utilisées par les différents environements
-│   
-├──  scripts              - Dossier contenant les scripts exécutables
-│    ├── eval.py    - Script permettant d'évaluer la performance d'un modèle
-│    └── train.py    - Script permettant de lancer le training d'un modèle
-│  
-└──  learned_models           - Dossier contenant les modèles appris
-     ├── model_CFV.zip  - Modèles appris exploitant l'environnement de type "CoordFieldVisionEnv"
-     └── model_FDF.zip  - Modèles appris exploitant l'environnement de type "FullDirectionOnFieldEnv"
-     └── model_FFV.zip  - Modèles appris exploitant l'environnement de type "FullFieldVisionEnv"
-     └── model_SFV.zip  - Modèles appris exploitant l'environnement de type "SpiralFieldVisionEnv"
+![Image](/readme_imgs/Archi.png)  
 
 ## Apprentissage & Résultats
 
-Les modèles sont appris avec les paramètres par défaut de l'implémantation DQN de SB3, sauf le paramètre "exploration_fraction" qui est définit à 0.20 car cela permettait à l'agent une meilleure exploration des possibilités de mouvement dans notre cas.
-Chaque modèle est appris pour 700 000 steps.
+Les modèles sont appris avec les paramètres par défaut de l'implémantation DQN de SB3, sauf le paramètre "exploration_fraction" qui est définit à 0.20 car cela permettait à l'agent une meilleure exploration des possibilités de mouvement dans notre cas.  
+Chaque modèle est appris pour 700 000 steps.  
 
-Dans le cas des approches CoordFieldVisionEnv, FullDirectionOnFieldEnv et SpiralFieldVisionEnv, "MlpPolicy" est utilisé en tant que policy.
-Dans le cas de l'approche FullFieldVisionEnv, "CnnPolicy" est utilisé en tant que policy.
+Dans le cas des approches CoordFieldVisionEnv, FullDirectionOnFieldEnv et SpiralFieldVisionEnv, "MlpPolicy" est utilisé en tant que policy.  
+Dans le cas de l'approche FullFieldVisionEnv, "CnnPolicy" est utilisé en tant que policy.  
 
 ## Setup
 
 Afin de faire fonctionner nos modèles, le package SB3 doit être installé:
-
+```
 !pip install "stable-baselines3[extra]>=2.0.0a4"
-
+```
+```
 git clone https://github.com/lucassA/DeepRL.git
+```
+```
+cd DeepRL
+```
+Pour lancer un apprentissage ou une évaluation, une fois dans le dossier principal:
+
+cd scripts
+
+python3 train 
+
+
