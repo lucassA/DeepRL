@@ -155,7 +155,7 @@ Dans le cas de l'approche FullFieldVisionEnv, "CnnPolicy" est utilisé en tant q
 
 ### Résultats
 
-Voici les courbes de mean_reward / number_steps pendant l'entraînement des modèles.  
+Voici les courbes de reward moyen par round de jeu (abscisse) sur le nombre d'étapes de jeu totale (ordonnée) pendant l'entraînement des modèles.  
 
 CoordFieldVisionEnv  
 ![Image](/readme_imgs/CDFmap4.png)  
@@ -169,7 +169,42 @@ FullFieldVisionEnv
 SpiralFieldVisionEnv  
 ![Image](/readme_imgs/SDFmap4.png)  
 
+Bien que ces courbes ne sont pas indicatives des performances d'un modèle, elles indiquent tout de même sa capacité à associer observations, rewards et actions.
 On peut notamment remarquer que l'apprentissage d'un modèle basé sur l'environnement CoordFieldVisionEnv n'arrive pas à apprendre de manière effective comment maximiser les rewards.
+
+### Exemples
+
+Voici quelques exemples des différents modèles.
+
+Exemple de CoordFieldVisionEnv sur la map "map_v4"  
+Start:  
+![Image](/readme_imgs/exCFVstartend.png)  
+End:  
+![Image](/readme_imgs/exCFVstartend.png)  
+
+On voit que malgré le fait que le modèle soit appris sur cette map, il n'arrive pas à se cacher de manière effective.  
+
+
+Exemple de FullDirectionOnFieldEnv sur la map non vu pendant l'entrainement "map_v1"  
+Start:  
+![Image](/readme_imgs/exFDFstart.png)  
+End:  
+![Image](/readme_imgs/exFDFend.png)  
+
+
+Exemple de SpiralFieldVisionEnv sur la map non vu pendant l'entrainement "map_v1"  
+Start:  
+![Image](/readme_imgs/exSFVstart.png)  
+End:  
+![Image](/readme_imgs/exSFVend.png)  
+
+Exemple de limitation de notre approche: environnement FullFieldVisionEnv sur la map d'entrainement "map_v4"  
+Start:  
+![Image](/readme_imgs/limitation1endFFV.png)  
+End:  
+![Image](/readme_imgs/limitation1startFFV.png)  
+
+L'agent n'est pas dans le champ de vision de l'ennemi et il trouve un endroit adjacent à deux blocks : il s'y dirige et s'y arrête, alors qu'un humain jugerait qu'il n'est pas "bien caché".
 
 ## Setup
 
