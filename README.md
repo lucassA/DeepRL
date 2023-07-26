@@ -2,7 +2,7 @@
 ## Tables des matières
 * [Informations Générales](#general-info)
 * [Architecture du Projet](#architecture)
-* [Apprentissage & Résultats](#results)
+* [Apprentissage](#apprentissage)
 * [Setup](#setup)
 
 ## Informations Générales
@@ -121,7 +121,7 @@ Les rewards (à chaque 'step') sont les suivants:
 * Si l'agent se place de manière à ce qu'il y a plusieurs blocks entre lui et l'ennemi, il est récompensé
 * Si l'agent s'éloigne deson point d'intêret, il est pénalisé. Sinon, il est récompensé.
 
-## Architecture du Projet
+## Architecture
 L'architecture du projet est présentée ci-dessous.
 
 L'environnement abstrait d'un jeu hide & seek est décrit dans le dossier "envs" à l'aide des fichiers "hideSeekEnv.py", "maps.py" et "unit.py".
@@ -137,7 +137,7 @@ Le dossier "learned_models" contient des modèles déjà appris (un pour chaque 
 
 ![Image](/readme_imgs/Archi.png)  
 
-## Apprentissage & Résultats
+## Apprentissage
 
 ### Détails d'Apprentissage
 
@@ -174,7 +174,8 @@ On peut notamment remarquer que l'apprentissage d'un modèle basé sur l'environ
 
 ### Exemples
 
-Voici quelques exemples des différents modèles.
+Voici quelques exemples des différents modèles.  
+Sur ces exemples: 'X' désigne l'agent qui se cache, 'Y' désigne l'ennemi. Un '0' désigne un block infranchissable, un '.' désigne une case vide et '-' désigne une case vide mais qui est vue par l'ennemi.
 
 Exemple de CoordFieldVisionEnv sur la map "map_v4"  
 Start:  
@@ -212,20 +213,24 @@ Afin de faire fonctionner nos modèles, le package SB3 doit être installé:
 ```
 !pip install "stable-baselines3[extra]>=2.0.0a4"
 ```
+
+Pour lancer des train/evaluations, il suffit de cloner le repo:  
 ```
 git clone https://github.com/lucassA/DeepRL.git
 ```
+Rentrer dans le répertoire crée:  
 ```
 cd DeepRL
 ```
+Lancer le fichier main.py:  
 ```
 python3 main.py -h
 ```
 Exemple de train pour un environnement SpiralFieldVisionEnv (les modèles de ./learned_models sont appris avec ces paramètres):
 ```
-python3 main.py -env spiral -a train -pmodel ./models -pmap ./data/map_v4 -ep moves -o True
+python3 main.py -env spiral -a train -pmodel ./learned_models/new_models -pmap ./data/map_v4 -ep moves -lg True -o True
 ```
 Exemple d'evaluation pour un environnement SpiralFieldVisionEnv et un modèle appris ./learned_models/SFV_map4.zip (attention, le paramètre '-o' ne doit être activé que pour les 4 map originales):  
 ```
-python3 main.py -env spiral -a eval -pmodel ./learned_models/SFV_map4.zip -pmap ./data/map_v4 -ep moves -v True -o True
+python3 main.py -env spiral -a eval -pmodel ./learned_models/SFV_map4.zip -pmap ./data/map_v4 -ep moves -o True
 ```
