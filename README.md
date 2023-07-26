@@ -140,6 +140,9 @@ Afin de faire fonctionner nos modèles, le package SB3 doit être installé:
 ```
 git clone https://github.com/lucassA/DeepRL.git
 ```
+```
+cd DeepRL
+```
 Pour lancer un apprentissage ou une évaluation, une fois dans le dossier principal:
 
 cd scripts
