@@ -21,7 +21,7 @@ def perform_evaluation(env_, policy, neval=10, deterministic=True, mode_eval="me
             print("Start:")
             obs, _ = env_.reset()
             env_.render()
-            n_steps = 40
+            n_steps = 50
             for step in range(n_steps):
                 action, _ = policy.predict(obs, deterministic=deterministic)
                 obs, reward, done, terminate, info = env_.step(action)
