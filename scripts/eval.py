@@ -46,25 +46,25 @@ def evaluate(args):
     env = None
     model = None
     if args.environment == "spiral":
-        env = SpiralFieldVisionEnv(map_file=args.pmap, enemy_placement=args.enemy_placement,
+        env = SpiralFieldVisionEnv(map_file=args.path_map, enemy_placement=args.enemy_placement,
                                    player_placement=args.agent_placement,
                                    opti=args.opti)
         check_env(env, warn=False)
         model = DQN.load(args.pmodel, env)
     elif args.environment == "coord":
-        env = CoordFieldVisionEnv(map_file=args.pmap, enemy_placement=args.enemy_placement,
+        env = CoordFieldVisionEnv(map_file=args.path_map, enemy_placement=args.enemy_placement,
                                   player_placement=args.agent_placement,
                                   opti=args.opti)
         check_env(env, warn=False)
         model = DQN.load(args.pmodel, env)
     elif args.environment == "field":
-        env = FullFieldVisionEnv(map_file=args.pmap, enemy_placement=args.enemy_placement,
+        env = FullFieldVisionEnv(map_file=args.path_map, enemy_placement=args.enemy_placement,
                                  player_placement=args.agent_placement,
                                  opti=args.opti, mode_vision=args.mode_vision)
         check_env(env, warn=False)
         model = DQN.load(args.pmodel, env)
     elif args.environment == "direction":
-        env = FullDirectionOnFieldEnv(map_file=args.pmap, enemy_placement=args.enemy_placement,
+        env = FullDirectionOnFieldEnv(map_file=args.path_map, enemy_placement=args.enemy_placement,
                                       player_placement=args.agent_placement,
                                       opti=args.opti)
         check_env(env, warn=False)
