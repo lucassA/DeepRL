@@ -175,7 +175,8 @@ class CoordFieldVisionEnv(HideSeekEnv):
                 elif self.playing_map.current_map[i][j] == self.ENEMY_vision:
                     print("- ", end="")
                 elif self.playing_map.current_map[i][j] == self.INTEREST_POINT:
-                    print("$ ", end="")
+                    print(". ", end="")
+
         print('')
         print('_' * 12)
 
