@@ -44,7 +44,7 @@ Nous expérimentons avec 4 type d'observations, représentées par les 4 fichier
 
 Dans cette approche, les observations sont composés de deux positions (paires de coodonnées) et d'une distance.
 Plus précisément: des coordonnées de l'agent, des coordonnées de la case qu'il doit emprunter pour se rapprocher de son point d'intérêt et de la distance entre les deux.  
-Exemple:  
+Exemple avec une map 4*4:  
 ![Image](/readme_imgs/CFV_ex1.png)
 
 Si X représente l'agent, @ représente un block et $ le point d'intérêt: le vecteur d'observation sera (1, 1, SEP, 1, 2, SEP, 2) où SEP est une valeur de séparation (= -1)
@@ -53,7 +53,7 @@ Si X représente l'agent, @ représente un block et $ le point d'intérêt: le v
 
 Dans cette approche, les observations sont composés de cinq valeurs, représentant l' action la plus probable que l'agent doit effectuer pour serapprocher de son point d'intêret.
 Plus précisément: des valeurs binaires représentant les actions possibles par l'agent (gauche, droite, haut, bas, arrêt).  
-Exemple:  
+Exemple avec une map 4*4: 
 ![Image](/readme_imgs/CFV_ex1.png)
         
 Si X représente l'agent, @ représente un block et $ le point d'intérêt: le vecteur d'observation sera (0, 1, 0, 0, 0)
