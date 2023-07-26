@@ -81,7 +81,7 @@ Avec l'exemple précédent:
 On obtiendrait une image "triplée":  
 ![Image](/readme_imgs/FFV_ex1.png)  
 
-laquelle on peut transformer en trois channels différents.
+que l'on peut transformer en trois channels différents.
 
 Nous proposons deux variantes: 
 * Soit l'image est statique, et représente la map dans son intégralité (mode_vision="static")
@@ -121,21 +121,21 @@ Le dossier "scripts" contient les scripts exécutables
 
 Le dossier "learned_models" contient des modèles déjà appris (un pour chaque type d'environnement)
 
-├── envs    - Dossier contenant les informations concernant les différents environnements de jeu
-│   ├── hideSeekEnv.py   - Fichier contenant la classe abstraite "HideSeekEnv" représentant un environnement générique de jeu hide & seek
-│   ├── maps.py        - Fichier contenant la classe Maps représentant une map sur laquelle se déroule le jeu de hide & seek
-│   ├── unit.py    - Fichier contenant la classe Unit représentant une unité (joueur/ennemi) dans une partie de hide & seek
-│   └── custom_envs    - Dossier contenant les environnement implémentant la classe abstraite "HideSeekEnv"
-|       ├── coordFieldVision.py   - Fichier contenant la classe représentant un environnement de type "CoordFieldVisionEnv"
-│       ├── fullDirectionOnField.py   - Fichier contenant la classe représentant un environnement de type "FullDirectionOnFieldEnv"
-│       ├── fullFieldVision.py   - Fichier contenant la classe représentant un environnement de type "FullFieldVisionEnv"
-│       └── spiralFieldVision.py   - Fichier contenant la classe représentant un environnement de type "SpiralFieldVisionEnv"
+├── envs                            - Dossier contenant les informations concernant les différents environnements de jeu
+│   ├── hideSeekEnv.py              - Fichier contenant la classe abstraite "HideSeekEnv" représentant un environnement générique de jeu hide & seek
+│   ├── maps.py                     - Fichier contenant la classe Maps représentant une map sur laquelle se déroule le jeu de hide & seek
+│   ├── unit.py                     - Fichier contenant la classe Unit représentant une unité (joueur/ennemi) dans une partie de hide & seek
+│   └── custom_envs                 - Dossier contenant les environnement implémentant la classe abstraite "HideSeekEnv"
+|       ├── coordFieldVision.py     - Fichier contenant la classe représentant un environnement de type "CoordFieldVisionEnv"
+│       ├── fullDirectionOnField.py - Fichier contenant la classe représentant un environnement de type "FullDirectionOnFieldEnv"
+│       ├── fullFieldVision.py      - Fichier contenant la classe représentant un environnement de type "FullFieldVisionEnv"
+│       └── spiralFieldVision.py    - Fichier contenant la classe représentant un environnement de type "SpiralFieldVisionEnv"
 │
 │
-├── data               - Dossier contenant les données externes nécessaires au jeu de hide & seek
-│   ├── dataloader.py  - Fichier contenant une simple classe transformant des données externes en objets exploitables par les environnements
-│   ├── opti_training.py - Fichier contenant des optimisations (données pré-calculées) pour rendre le training plus efficient
-│   └── example_maps    - Dossier contenant les données externes (sous forme de fichiers textuels) concernant les différentes maps de jeu
+├── data                            - Dossier contenant les données externes nécessaires au jeu de hide & seek
+│   ├── dataloader.py               - Fichier contenant une simple classe transformant des données externes en objets exploitables par les environnements
+│   ├── opti_training.py            - Fichier contenant des optimisations (données pré-calculées) pour rendre le training plus efficient
+│   └── example_maps                - Dossier contenant les données externes (sous forme de fichiers textuels) concernant les différentes maps de jeu
 │       └── map_v1
 │       └── map_v2
 │       └── map_v3
@@ -143,17 +143,19 @@ Le dossier "learned_models" contient des modèles déjà appris (un pour chaque 
 │
 │
 ├── misc             
-│   └── utils.py   - Fichier contenant des fonctions "génériques" utilisées par les différents environements
+│   └── utils.py                    - Fichier contenant des fonctions "génériques" utilisées par les différents environements
 │   
-├──  scripts              - Dossier contenant les scripts exécutables
-│    ├── eval.py    - Script permettant d'évaluer la performance d'un modèle
-│    └── train.py    - Script permettant de lancer le training d'un modèle
+├──  scripts                        - Dossier contenant les scripts exécutables
+│    ├── eval.py                    - Script permettant d'évaluer la performance d'un modèle
+│    └── train.py                   - Script permettant de lancer le training d'un modèle
 │  
-└──  learned_models           - Dossier contenant les modèles appris
-     ├── model_CFV.zip  - Modèles appris exploitant l'environnement de type "CoordFieldVisionEnv"
-     └── model_FDF.zip  - Modèles appris exploitant l'environnement de type "FullDirectionOnFieldEnv"
-     └── model_FFV.zip  - Modèles appris exploitant l'environnement de type "FullFieldVisionEnv"
-     └── model_SFV.zip  - Modèles appris exploitant l'environnement de type "SpiralFieldVisionEnv"
+└──  learned_models                 - Dossier contenant les modèles appris
+     ├── model_CFV.zip              - Modèles appris exploitant l'environnement de type "CoordFieldVisionEnv"
+     └── model_FDF.zip              - Modèles appris exploitant l'environnement de type "FullDirectionOnFieldEnv"
+     └── model_FFV.zip              - Modèles appris exploitant l'environnement de type "FullFieldVisionEnv"
+     └── model_SFV.zip              - Modèles appris exploitant l'environnement de type "SpiralFieldVisionEnv"
+
+![Image](/readme_imgs/archi.png)  
 
 ## Apprentissage & Résultats
 
@@ -170,3 +172,11 @@ Afin de faire fonctionner nos modèles, le package SB3 doit être installé:
 !pip install "stable-baselines3[extra]>=2.0.0a4"
 
 git clone https://github.com/lucassA/DeepRL.git
+
+Pour lancer un apprentissage ou une évaluation, une fois dans le dossier principal:
+
+cd scripts
+
+python3 train 
+
+
