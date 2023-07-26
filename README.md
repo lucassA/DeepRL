@@ -2,7 +2,7 @@
 ## Tables des matières
 * [Informations Générales](#general-info)
 * [Architecture du Projet](#architecture)
-* [Apprentissage](#apprentissage)
+* [Expérimentations](#expérimentations)
 * [Setup](#setup)
 
 ## Informations Générales
@@ -114,12 +114,12 @@ Les actions possibles pour l'agent sont au nombre de 5:
 
 ### Rewards
 
-Les rewards (à chaque 'step') sont les suivants:
-* Si l'agent effectue un déplacement interdit (contre un block, l'ennemi ou essaye de sortir des limites de la map): il est pénalisé
-* Si l'agent n'est pas dans le champ de vision de l'ennemi, il est récompensé
-* Si l'agent se positionne contre plus d'un seul block, il est considéré comme "bien caché" et est récompensé
-* Si l'agent se place de manière à ce qu'il y a plusieurs blocks entre lui et l'ennemi, il est récompensé
-* Si l'agent s'éloigne deson point d'intêret, il est pénalisé. Sinon, il est récompensé.
+Les rewards sont simplistes :
+* Si l'agent s'éloigne de son point d'intérêt, il est pénalisé
+* Si l'agent se rapproche de son point d'intérêt, il est récompensé
+* Si l'agent n'a plus de point d'intérêt, on considère qu'il est caché, il est largement récompensé
+
+Nous avons expérimenté avec d'autres rewards, moins "intrusifs", afin d'étudier la possibilité pour l'agent d'apprendre à se cacher sans calcul explicite de son point d'intérêt. Plus d'information dans la partie Expérimentations
 
 ## Architecture
 L'architecture du projet est présentée ci-dessous.
@@ -137,7 +137,7 @@ Le dossier "learned_models" contient des modèles déjà appris (un pour chaque 
 
 ![Image](/readme_imgs/Archi.png)  
 
-## Apprentissage
+## Expérimentations
 
 ### Détails d'Apprentissage
 
@@ -157,6 +157,30 @@ Dans le cas de l'approche FullFieldVisionEnv, "CnnPolicy" est utilisé en tant q
 
 Voici les courbes de reward moyen par round de jeu (abscisse) sur le nombre d'étapes de jeu totale (ordonnée) pendant l'entraînement des modèles.  
 
+
+
+Bien que ces courbes ne sont pas indicatives des performances d'un modèle, elles indiquent tout de même sa capacité à associer observations, rewards et actions.
+
+
+### Exemples
+
+Voici quelques exemples des différents modèles.  
+Sur ces exemples: 'X' désigne l'agent qui se cache, 'Y' désigne l'ennemi. Un '0' désigne un block infranchissable, un '.' désigne une case vide et '-' désigne une case vide mais qui est vue par l'ennemi.
+
+
+### Expérimentations de différent rewards
+
+Ces rewards visent à étudier la capacité de l'agent à apprendre à se cacher de lui même.  
+
+Les rewards testés sont "moins intrusifs" que les calculs à base de points d'intérêts:
+* Si l'agent effectue un déplacement interdit (contre un block, l'ennemi ou essaye de sortir des limites de la map): il est pénalisé
+* Si l'agent n'est pas dans le champ de vision de l'ennemi, il est récompensé
+* Si l'agent se positionne contre plus d'un seul block, il est considéré comme "bien caché" et est récompensé
+* Si l'agent se place de manière à ce qu'il y a plusieurs blocks entre lui et l'ennemi, il est récompensé
+
+Globalement, les performances des modèles associés à ces rewards chutent comparés au rewards basé sur les points d'intérêt.  
+Voici les courbes de reward moyen par round de jeu:
+
 CoordFieldVisionEnv  
 ![Image](/readme_imgs/CDFmap4.png)  
 
@@ -169,14 +193,9 @@ FullFieldVisionEnv
 SpiralFieldVisionEnv  
 ![Image](/readme_imgs/SDFmap4.png)  
 
-Bien que ces courbes ne sont pas indicatives des performances d'un modèle, elles indiquent tout de même sa capacité à associer observations, rewards et actions.
-On peut notamment remarquer que l'apprentissage d'un modèle basé sur l'environnement CoordFieldVisionEnv n'arrive pas à apprendre de manière effective comment maximiser les rewards.
+On peut remarquer que l'apprentissage d'un modèle basé sur l'environnement CoordFieldVisionEnv n'arrive pas à apprendre de manière effective comment maximiser les rewards.  
 
-### Exemples
-
-Voici quelques exemples des différents modèles.  
-Sur ces exemples: 'X' désigne l'agent qui se cache, 'Y' désigne l'ennemi. Un '0' désigne un block infranchissable, un '.' désigne une case vide et '-' désigne une case vide mais qui est vue par l'ennemi.
-
+Voici quelques exemples de rounds utilisant ces rewards:
 Exemple de CoordFieldVisionEnv sur la map "map_v4"  
 Start:  
 ![Image](/readme_imgs/exCFVstartend.png)  
@@ -205,7 +224,8 @@ Start:
 End:  
 ![Image](/readme_imgs/limitation1endFFV.png)  
 
-L'agent n'est pas dans le champ de vision de l'ennemi et il trouve un endroit adjacent à deux blocks : il s'y dirige et s'y arrête, alors qu'un humain jugerait qu'il n'est pas "bien caché".
+On voit que dans plusieurs cas, l'agent arrive tout de même à se cacher correctement.  
+Cependant, de plus amples efforts seraient à fournir dans cette direction (tuning des hyperparamètres, etc.) afin d'obtenir des résultats comparables à l'approche à base de points d'intérêts.
 
 ## Setup
 
