@@ -153,6 +153,8 @@ Les modèles de ./learned_models sont appris avec 700 000 steps.
 Dans le cas des approches CoordFieldVisionEnv, FullDirectionOnFieldEnv et SpiralFieldVisionEnv, "MlpPolicy" est utilisé en tant que policy.  
 Dans le cas de l'approche FullFieldVisionEnv, "CnnPolicy" est utilisé en tant que policy.  
 
+Les modèles appris avec ces paramètres sont indiqués par la mention "robust" dans le dossier /learned_model.
+
 ### Résultats
 
 Voici les courbes de reward moyen par round de jeu (abscisse) sur le nombre d'étapes de jeu totale (ordonnée) pendant l'entraînement des modèles.  
@@ -167,7 +169,7 @@ FullFieldVisionEnv
 ![Image](/readme_imgs/FFV_correct_rewards.png)  
 
 SpiralFieldVisionEnv  
-![Image](/readme_imgs/SDF_correct_rewards.png)  
+![Image](/readme_imgs/SVF_correct_rewards.png)  
 
 Bien que ces courbes ne sont pas indicatives des performances d'un modèle, elles indiquent tout de même sa capacité à associer observations, rewards et actions.  
 On peut notamment remarquer que le modèle basé sur l'environnement CoordFieldVisionEnv n'arrive pas à apprendre de manière effective comment maximiser les rewards.  
@@ -266,6 +268,8 @@ End:
 
 On voit que dans plusieurs cas, l'agent arrive tout de même à se cacher correctement.  
 Cependant, de plus amples efforts seraient à fournir dans cette direction (tuning des hyperparamètres, etc.) afin d'obtenir des résultats comparables à l'approche à base de points d'intérêts.
+
+Les modèles appris avec ces paramètres sont indiqués par la mention "experimental" dans le dossier /learned_model.
 
 ## Setup
 
