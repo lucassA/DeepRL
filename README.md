@@ -169,7 +169,7 @@ FullFieldVisionEnv
 ![Image](/readme_imgs/FFV_correct_rewards.png)  
 
 SpiralFieldVisionEnv  
-![Image](/readme_imgs/SVF_correct_rewards.png)  
+![Image](/readme_imgs/SFV_correct_rewards.png)  
 
 Bien que ces courbes ne sont pas indicatives des performances d'un modèle, elles indiquent tout de même sa capacité à associer observations, rewards et actions.  
 On peut notamment remarquer que le modèle basé sur l'environnement CoordFieldVisionEnv n'arrive pas à apprendre de manière effective comment maximiser les rewards.  
