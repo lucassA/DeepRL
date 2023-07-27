@@ -160,7 +160,7 @@ Les modèles appris avec ces paramètres sont indiqués par la mention "robust" 
 Voici les courbes de reward moyen par round de jeu (abscisse) sur le nombre d'étapes de jeu totale (ordonnée) pendant l'entraînement des modèles.  
 
 CoordFieldVisionEnv  
-![Image](/readme_imgs/CDF_correct_rewards.png)  
+![Image](/readme_imgs/CFV_correct_rewards.png)  
 
 FullDirectionOnFieldEnv  
 ![Image](/readme_imgs/FDF_correct_rewards.png)  
