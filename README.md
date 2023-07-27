@@ -157,16 +157,57 @@ Dans le cas de l'approche FullFieldVisionEnv, "CnnPolicy" est utilisé en tant q
 
 Voici les courbes de reward moyen par round de jeu (abscisse) sur le nombre d'étapes de jeu totale (ordonnée) pendant l'entraînement des modèles.  
 
+CoordFieldVisionEnv  
+![Image](/readme_imgs/CDF_correct_rewards.png)  
 
+FullDirectionOnFieldEnv  
+![Image](/readme_imgs/FDF_correct_rewards.png)  
 
-Bien que ces courbes ne sont pas indicatives des performances d'un modèle, elles indiquent tout de même sa capacité à associer observations, rewards et actions.
+FullFieldVisionEnv  
+![Image](/readme_imgs/FFV_correct_rewards.png)  
 
+SpiralFieldVisionEnv  
+![Image](/readme_imgs/SDF_correct_rewards.png)  
+
+Bien que ces courbes ne sont pas indicatives des performances d'un modèle, elles indiquent tout de même sa capacité à associer observations, rewards et actions.  
+On peut notamment remarquer que le modèle basé sur l'environnement CoordFieldVisionEnv n'arrive pas à apprendre de manière effective comment maximiser les rewards.  
+
+De manière générale, les environnements FullDirectionOnFieldEnv et FullFieldVisionEnv donnent (empiriquement) les meilleurs résultats.
 
 ### Exemples
 
-Voici quelques exemples des différents modèles.  
-Sur ces exemples: 'X' désigne l'agent qui se cache, 'Y' désigne l'ennemi. Un '0' désigne un block infranchissable, un '.' désigne une case vide et '-' désigne une case vide mais qui est vue par l'ennemi.
+Voici quelques exemples des deux modèles les plus performants: FullDirectionOnFieldEnv et FullFieldVisionEnv.  
+Sur ces exemples: 'X' désigne l'agent qui se cache, 'Y' désigne l'ennemi. Un '0' désigne un block infranchissable, un '.' désigne une case vide et '-' désigne une case vide mais qui est vue par l'ennemi.  
 
+Exemple de FullDirectionOnFieldEnv sur la map non vu pendant l'entrainement "map_v1"  
+Start:  
+![Image](/readme_imgs/FDF_ex2end.png)  
+End:  
+![Image](/readme_imgs/FDF_ex2trueend.png)  
+Autre exemple,  
+Start:  
+![Image](/readme_imgs/FDF_ex1start.png)  
+End:  
+![Image](/readme_imgs/FDF_ex1end.png)  
+
+Exemple de FullFieldVisionEnv sur la map non vu pendant l'entrainement "map_v1"  
+Start:  
+![Image](/readme_imgs/FFV_ex2start.png)  
+End:  
+![Image](/readme_imgs/FFV_ex2end.png)  
+Autre exemple,  
+Start:  
+![Image](/readme_imgs/FFV_ex3start.png)  
+End:  
+![Image](/readme_imgs/FFV_ex3end.png)  
+
+Nos modèles sont cependant loin d'être parfait, comme le montre cet exemple de l'environnement FullDirectionOnFieldEnv:
+Start:  
+![Image](/readme_imgs/FDF_badexstart.png)  
+End:  
+![Image](/readme_imgs/FDF_badexed.png)  
+Ici, l'agent voit la case à droite de l'ennemi (Y) comme étant une case "libre", puisqu'il ne sait pas que la vision de l'ennemi s'y porte également.  
+Il essaye alors de s'y rendre, mais ne peux pas traverser l'ennemi et s'arrête donc ici.
 
 ### Expérimentations de différent rewards
 
@@ -193,7 +234,7 @@ FullFieldVisionEnv
 SpiralFieldVisionEnv  
 ![Image](/readme_imgs/SDFmap4.png)  
 
-On peut remarquer que l'apprentissage d'un modèle basé sur l'environnement CoordFieldVisionEnv n'arrive pas à apprendre de manière effective comment maximiser les rewards.  
+De manière similaire aux précédents rewards, on peut voir que le modèle basé sur l'environnement CoordFieldVisionEnv n'arrive pas à apprendre de manière effective comment maximiser les rewards.  
 
 Voici quelques exemples de rounds utilisant ces rewards:
 Exemple de CoordFieldVisionEnv sur la map "map_v4"  
@@ -203,7 +244,6 @@ End:
 ![Image](/readme_imgs/exCFVstartend.png)  
 
 On voit que malgré le fait que le modèle soit appris sur cette map, il n'arrive pas à se cacher de manière effective.  
-
 
 Exemple de FullDirectionOnFieldEnv sur la map non vu pendant l'entrainement "map_v1"  
 Start:  
@@ -246,11 +286,11 @@ Lancer le fichier main.py:
 ```
 python3 main.py -h
 ```
-Exemple de train pour un environnement SpiralFieldVisionEnv (les modèles de ./learned_models sont appris avec ces paramètres):
+Exemple de train pour un environnement FullDirectionOnFieldEnv (les modèles de ./learned_models sont appris avec ces paramètres):
 ```
-python3 main.py -env spiral -a train -pmodel ./learned_models/new_models -pmap ./data/map_v4 -ep moves -lg True -o True
+python3 main.py -env direction -a train -pmodel ./learned_models/new_models -pmap ./data/map_v4 -ep moves -lg True -o True
 ```
-Exemple d'evaluation pour un environnement SpiralFieldVisionEnv et un modèle appris ./learned_models/SFV_map4.zip (attention, le paramètre '-o' ne doit être activé que pour les 4 map originales):  
+Exemple d'evaluation pour un environnement FullDirectionOnFieldEnv et un modèle appris ./learned_models/SFV_map4.zip (attention, le paramètre '-o' ne doit être activé que pour les 4 map originales):  
 ```
-python3 main.py -env spiral -a eval -pmodel ./learned_models/SFV_map4.zip -pmap ./data/map_v4 -ep moves -o True
+python3 main.py -env direction -a eval -pmodel ./learned_models/FDF_robust.zip -pmap ./data/map_v3 -ep moves -o True
 ```
