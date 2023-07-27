@@ -203,7 +203,7 @@ Start:
 End:  
 ![Image](/readme_imgs/FFV_ex3end.png)  
 
-Nos modèles sont cependant loin d'être parfait, comme le montre cet exemple de l'environnement FullDirectionOnFieldEnv:
+Nos modèles sont cependant loin d'être parfait, comme le montre cet exemple de l'environnement FullDirectionOnFieldEnv:  
 Start:  
 ![Image](/readme_imgs/FDF_badexstart.png)  
 End:  
@@ -213,16 +213,16 @@ Il essaye alors de s'y rendre, mais ne peux pas traverser l'ennemi et s'arrête 
 
 ### Expérimentations de différent rewards
 
-Ces rewards visent à étudier la capacité de l'agent à apprendre à se cacher de lui même.  
+Ces rewards visent à étudier la capacité de l'agent à apprendre à associer "point d'intérêt"avec "hausse de reward" de lui même.  
 
-Les rewards testés sont "moins intrusifs" que les calculs à base de points d'intérêts:
+Les rewards testés sont "moins explicites" que les calculs à base de distance de points d'intérêts:
 * Si l'agent effectue un déplacement interdit (contre un block, l'ennemi ou essaye de sortir des limites de la map): il est pénalisé
 * Si l'agent n'est pas dans le champ de vision de l'ennemi, il est récompensé
 * Si l'agent se positionne contre plus d'un seul block, il est considéré comme "bien caché" et est récompensé
 * Si l'agent se place de manière à ce qu'il y a plusieurs blocks entre lui et l'ennemi, il est récompensé
 
 Globalement, les performances des modèles associés à ces rewards chutent comparés au rewards basé sur les points d'intérêt.  
-Voici les courbes de reward moyen par round de jeu:
+Voici les courbes de reward moyen par round de jeu (difficilement comparables avec celles montrés précédemment puisque les échelles de reward ont changées):  
 
 CoordFieldVisionEnv  
 ![Image](/readme_imgs/CDFmap4.png)  
@@ -267,9 +267,9 @@ End:
 ![Image](/readme_imgs/limitation1endFFV.png)  
 
 On voit que dans plusieurs cas, l'agent arrive tout de même à se cacher correctement.  
-Cependant, de plus amples efforts seraient à fournir dans cette direction (tuning des hyperparamètres, etc.) afin d'obtenir des résultats comparables à l'approche à base de points d'intérêts.
+Cependant, de plus amples efforts seraient à fournir dans cette direction (tuning des hyperparamètres, etc.) afin d'obtenir des résultats comparables à l'approche à base de points d'intérêts.  
 
-Les modèles appris avec ces paramètres sont indiqués par la mention "experimental" dans le dossier /learned_model.
+Les modèles appris avec ces paramètres sont indiqués par la mention "experimental" dans le dossier /learned_model.  
 
 ## Setup
 
